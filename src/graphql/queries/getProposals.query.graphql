@@ -1,0 +1,19 @@
+query getProposals($spaces: [String], $state: String, $first: Int, $start: Int, $end: Int) {
+  proposals(
+    where: { space_in: $spaces, state: $state, start_gte: $start, end_lt: $end }
+    orderBy: "created"
+    orderDirection: desc
+    first: $first
+  ) {
+    id
+    title
+    choices
+    start
+    end
+    snapshot
+    state
+    space {
+      name
+    }
+  }
+}
